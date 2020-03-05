@@ -1,8 +1,8 @@
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:vector_math/vector_math_64.dart' as vmath;
 
 import '../extensions/bounce_extensions.dart';
 import '../paint/line_painter.dart';
@@ -22,9 +22,27 @@ class _LearnMorePageState extends State<LearnMorePage>
   ParticleController _particleController;
   AnimationController _animationController;
 
+  double _pixels;
+  int _timestamp;
+
+  void _scrollListener() {
+    final pixels = _scrollController.position.pixels;
+    final timestamp = DateTime.now().millisecondsSinceEpoch;
+    if (_pixels != null) {
+      var velocity = ((pixels - _pixels) / (timestamp - _timestamp)) / 100;
+      if (velocity > 0) {
+        velocity = min(velocity, 0.1);
+      } else {
+        velocity = max(velocity, -0.1);
+      }
+      _particleController.update(force: velocity);
+    }
+    _pixels = pixels;
+    _timestamp = timestamp;
+  }
+
   @override
   void initState() {
-    // TODO: implement initState
     _particleController = ParticleController();
     _animationController = AnimationController(
       vsync: this,
@@ -32,8 +50,17 @@ class _LearnMorePageState extends State<LearnMorePage>
         seconds: 10,
       ),
     );
-    _animationController.forward();
+    _animationController.repeat();
+
+    // _scrollController.position.
+    _scrollController.addListener(_scrollListener);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
   }
 
   void _animateDown() {
@@ -84,20 +111,18 @@ class _LearnMorePageState extends State<LearnMorePage>
               )
             ],
           ),
-          // AnimatedBuilder(
-          //   animation: _animationController,
-          //   builder: (context, child) {
-          //     _particleController.update();
-          //     return CustomPaint(
-          //       painter: ParticlePainter(_particleController.particles),
-          //       child: Container(),
-          //     );
-          //   },
-          // child: CustomPaint(
-          //   painter: ParticlePainter(_particleController.particles),
-          //   child: Container(),
-          // ),
-          // ),
+          IgnorePointer(
+            child: AnimatedBuilder(
+              animation: _animationController,
+              builder: (context, child) {
+                _particleController.update();
+                return CustomPaint(
+                  painter: ParticlePainter(_particleController.particles),
+                  child: Container(),
+                );
+              },
+            ),
+          ),
         ],
       ),
     );
@@ -114,21 +139,22 @@ class LearnMoreHeader extends StatefulWidget {
 
 class _LearnMoreHeaderState extends State<LearnMoreHeader>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
+  AnimationController _animationController;
   CurvedAnimation _animation;
 
   @override
   void initState() {
-    _controller =
+    _animationController =
         AnimationController(vsync: this, duration: Duration(seconds: 3));
-    _animation = CurvedAnimation(parent: _controller, curve: Curves.slowMiddle);
-    _controller.repeat();
+    _animation =
+        CurvedAnimation(parent: _animationController, curve: Curves.slowMiddle);
+    _animationController.repeat();
     super.initState();
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _animationController.dispose();
     super.dispose();
   }
 
@@ -177,9 +203,13 @@ class ParticleController {
   int numberOfParticles;
   List<Particle> particles = [];
 
-  void update() {
+  void update({double force}) {
     for (final particle in particles) {
-      particle.applyForceUp();
+      particle.applyForceUp(force: force);
+      if (particle.position.dy < 0.0) {
+        final yPos = 1 + lerpDouble(0.1, 0.3, random.nextDouble());
+        particle.reset(y: yPos);
+      }
     }
   }
 }
@@ -188,6 +218,7 @@ class Particle {
   Offset _position;
   double radius;
   Paint paint;
+  double _force;
 
   Particle(this.random) {
     _init();
@@ -196,40 +227,46 @@ class Particle {
 
   Offset get position => _position;
 
+  // static const List<Color> colors = [Colors.blue, Colors.red, Colors.green];
+
   void _init() {
-    _position = Offset(random.nextDouble(), random.nextDouble());
-    paint = Paint()..color = Colors.black;
+    _position = Offset(random.nextDouble(), max(0.3, random.nextDouble()));
+    paint = Paint()..color = Colors.white.withOpacity(random.nextDouble());
     radius = random.nextDouble() * 10;
+    _force = _randomForce();
   }
 
-  void reset() {
-    _position = Offset(random.nextDouble(), random.nextDouble());
+  void applyForceUp({double force}) {
+    final newForce = _force + (force ?? 0);
+    _position += Offset(0, -newForce);
   }
 
-  void applyForceUp({double force = 0.001}) {
-    _position += Offset(0, -force);
+  void reset({double y}) {
+    y ??= random.nextDouble();
+    _position = Offset(random.nextDouble(), y);
+    _force = _randomForce();
+  }
+
+  double _randomForce() {
+    return lerpDouble(0.001, 0.005, random.nextDouble());
   }
 }
 
 class ParticlePainter extends CustomPainter {
-  static final Paint particlePaint = Paint()..color = Colors.black;
   final List<Particle> particles;
 
   ParticlePainter(this.particles);
 
   @override
   void paint(Canvas canvas, Size size) {
-    print(size);
-
     for (final particle in particles) {
       final pos = particle.position.scale(size.width, size.height);
-      canvas.drawCircle(pos, 10, particlePaint);
+      canvas.drawCircle(pos, particle.radius, particle.paint);
     }
   }
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
-    // TODO: implement shouldRepaint
     return true;
   }
 }

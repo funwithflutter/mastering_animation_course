@@ -12,10 +12,11 @@ class FadeTransitionBuilder extends PageTransitionsBuilder {
     Animation<double> secondaryAnimation,
     Widget child,
   ) {
-    // var opacityTween = Tween<double>(begin: 0, end: 1);
-    // var opacityAnimation = animation.drive(opacityTween);
+    var opacityTween =
+        Tween<double>(begin: 0, end: 1).chain(CurveTween(curve: Curves.ease));
+    var opacityAnimation = animation.drive(opacityTween);
     return FadeTransition(
-      opacity: animation,
+      opacity: opacityAnimation,
       child: child,
     );
   }

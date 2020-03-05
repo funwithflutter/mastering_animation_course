@@ -65,7 +65,7 @@ class FlipTransition extends AnimatedWidget {
 
   Animation<double> get scale => scaleSequence.animate(listenable);
   Animation<double> get rotation => rotateSequence.animate(listenable);
-  Animation<double> get spread => spreadTween.animate(
+  Animation<double> get shadowSpread => spreadTween.animate(
         CurvedAnimation(
           parent: listenable,
           curve: Curves.easeIn,
@@ -110,7 +110,7 @@ class FlipTransition extends AnimatedWidget {
                   blurRadius:
                       blur.value, // has the effect of softening the shadow
                   spreadRadius:
-                      spread.value, // has the effect of extending the shadow
+                      shadowSpread.value, // has the effect of extending the shadow
                   offset: Offset(
                     offsetX.value,
                     offsetY.value,

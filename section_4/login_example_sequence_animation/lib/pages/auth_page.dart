@@ -18,7 +18,7 @@ enum AuthState {
 }
 
 class AuthPage extends StatefulWidget {
-  const AuthPage({Key key}) : super(key: key);
+  const AuthPage({Key? key}) : super(key: key);
 
   @override
   _AuthPageState createState() => _AuthPageState();
@@ -27,8 +27,8 @@ class AuthPage extends StatefulWidget {
 class _AuthPageState extends State<AuthPage>
     with SingleTickerProviderStateMixin {
   // animation variables
-  AnimationController _controller;
-  SequenceAnimation _sequenceAnimation;
+  late AnimationController _controller;
+  late SequenceAnimation _sequenceAnimation;
 
   // variables to control the transition effect to the home page
   double _expandingWidth = 0;
@@ -47,6 +47,8 @@ class _AuthPageState extends State<AuthPage>
 
   @override
   void initState() {
+    super.initState();
+
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 1200),
@@ -54,8 +56,6 @@ class _AuthPageState extends State<AuthPage>
 
     _initSequenceAnimation();
     _controller.forward(from: 0);
-
-    super.initState();
   }
 
   @override
@@ -211,7 +211,7 @@ class _AuthPageState extends State<AuthPage>
                       decoration: BoxDecoration(
                         color: Colors.grey.shade300.withOpacity(0.1),
                         borderRadius: _sequenceAnimation['borderRadius'].value
-                            as BorderRadiusGeometry,
+                            as BorderRadiusGeometry?,
                       ),
                       child: Stack(
                         children: <Widget>[

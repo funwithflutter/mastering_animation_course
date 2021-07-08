@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class TextInputBox extends StatelessWidget {
   const TextInputBox({
-    Key key,
-    @required this.icon,
-    @required this.hintText,
+    Key? key,
+    required this.icon,
+    required this.hintText,
     this.obscureText = false,
   }) : super(key: key);
 

@@ -4,10 +4,10 @@ import '../styles/backgrounds.dart';
 
 class ExpandingPageAnimation extends StatelessWidget {
   const ExpandingPageAnimation({
-    Key key,
-    @required double width,
-    @required double height,
-    @required double borderRadius,
+    Key? key,
+    required double width,
+    required double height,
+    required double borderRadius,
   })  : _width = width,
         _height = height,
         _borderRadius = borderRadius,

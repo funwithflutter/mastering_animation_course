@@ -6,12 +6,12 @@ import 'call_to_action_text.dart';
 import 'text_input_box.dart';
 
 class SignUpForm extends StatelessWidget {
-  const SignUpForm(
-      {Key key,
-      @required this.onLoginPressed,
-      @required this.onSignUpPressed,
-      @required this.safeArea})
-      : super(key: key);
+  const SignUpForm({
+    Key? key,
+    required this.onLoginPressed,
+    required this.onSignUpPressed,
+    required this.safeArea,
+  }) : super(key: key);
 
   final VoidCallback onLoginPressed;
   final VoidCallback onSignUpPressed;

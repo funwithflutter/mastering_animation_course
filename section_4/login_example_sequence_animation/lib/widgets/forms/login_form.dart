@@ -7,10 +7,10 @@ import 'text_input_box.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({
-    Key key,
-    @required this.onLoginPressed,
-    @required this.onSignUpPressed,
-    @required this.safeArea,
+    Key? key,
+    required this.onLoginPressed,
+    required this.onSignUpPressed,
+    required this.safeArea,
   }) : super(key: key);
 
   final VoidCallback onSignUpPressed;

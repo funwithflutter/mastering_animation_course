@@ -9,9 +9,9 @@ BoxDecoration backgroundAuthDecoration() {
       end: Alignment.topRight,
       stops: const [0.1, 0.5, 0.9],
       colors: [
-        authPageBackgroundColor[700],
-        authPageBackgroundColor[600],
-        authPageBackgroundColor[400],
+        authPageBackgroundColor[700]!,
+        authPageBackgroundColor[600]!,
+        authPageBackgroundColor[400]!,
       ],
     ),
   );
@@ -27,10 +27,10 @@ LinearGradient linearGradientHomeDecoration() {
     end: Alignment.topRight,
     stops: const [0.1, 0.5, 0.7, 0.9],
     colors: [
-      homePageBackgroundColor[800],
-      homePageBackgroundColor[700],
-      homePageBackgroundColor[600],
-      homePageBackgroundColor[400],
+      homePageBackgroundColor[800]!,
+      homePageBackgroundColor[700]!,
+      homePageBackgroundColor[600]!,
+      homePageBackgroundColor[400]!,
     ],
   );
 }

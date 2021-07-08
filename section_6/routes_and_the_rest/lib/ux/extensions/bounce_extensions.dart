@@ -9,7 +9,8 @@ extension BounceExtension on Widget {
 }
 
 class _BounceOutAnimation extends StatefulWidget {
-  _BounceOutAnimation({Key key, this.child}) : super(key: key);
+  const _BounceOutAnimation({Key key, this.child}) : super(key: key);
+
   final Widget child;
 
   @override
@@ -40,7 +41,7 @@ class _BounceOutAnimationState extends State<_BounceOutAnimation>
   @override
   void initState() {
     _controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 2));
+        AnimationController(vsync: this, duration: const Duration(seconds: 2));
     _animation = _offsetTween.animate(_controller);
 
     _controller.repeat();

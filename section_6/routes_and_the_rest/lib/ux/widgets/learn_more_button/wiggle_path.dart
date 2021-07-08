@@ -25,15 +25,16 @@ class WigglePath {
   List<Offset> get points => _currentPoints;
 
   void _generateBasePoints() {
-    _basePoints.add(Offset(0, 0));
-    _basePoints.add(Offset(0, height / 2));
-    _basePoints.add(Offset(0, height));
-    _basePoints.add(Offset(width / 3, height));
-    _basePoints.add(Offset(width * 2 / 3, height));
-    _basePoints.add(Offset(width, height));
-    _basePoints.add(Offset(width, 0));
-    _basePoints.add(Offset(width * 2 / 3, 0));
-    _basePoints.add(Offset(width / 3, 0));
+    _basePoints
+      ..add(const Offset(0, 0))
+      ..add(Offset(0, height / 2))
+      ..add(Offset(0, height))
+      ..add(Offset(width / 3, height))
+      ..add(Offset(width * 2 / 3, height))
+      ..add(Offset(width, height))
+      ..add(Offset(width, 0))
+      ..add(Offset(width * 2 / 3, 0))
+      ..add(Offset(width / 3, 0));
 
     _targetPoints = List.from(_basePoints);
     _currentPoints = List.from(_basePoints);

@@ -4,12 +4,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class FlipTransition extends AnimatedWidget {
-  static const double beginScale = 1;
-  static const double endScale = 1.8;
-  static const double beginRotation = 0;
-  static const double midRotation = pi / 2;
-  static const double endRotation = pi;
-
   FlipTransition({
     Key key,
     Animation<double> animation,
@@ -53,6 +47,12 @@ class FlipTransition extends AnimatedWidget {
           listenable: animation,
         );
 
+  static const double beginScale = 1;
+  static const double endScale = 1.8;
+  static const double beginRotation = 0;
+  static const double midRotation = pi / 2;
+  static const double endRotation = pi;
+
   final Widget child;
 
   final TweenSequence<double> scaleSequence;
@@ -63,29 +63,31 @@ class FlipTransition extends AnimatedWidget {
   final Tween<double> offsetXTween;
   final Tween<double> offsetYTween = Tween<double>(begin: 10, end: 0);
 
-  Animation<double> get scale => scaleSequence.animate(listenable);
-  Animation<double> get rotation => rotateSequence.animate(listenable);
+  Animation<double> get scale =>
+      scaleSequence.animate(listenable as Animation<double>);
+  Animation<double> get rotation =>
+      rotateSequence.animate(listenable as Animation<double>);
   Animation<double> get shadowSpread => spreadTween.animate(
         CurvedAnimation(
-          parent: listenable,
+          parent: listenable as Animation<double>,
           curve: Curves.easeIn,
         ),
       );
   Animation<double> get blur => blurTween.animate(
         CurvedAnimation(
-          parent: listenable,
+          parent: listenable as Animation<double>,
           curve: Curves.easeIn,
         ),
       );
   Animation<double> get offsetX => offsetXTween.animate(
         CurvedAnimation(
-          parent: listenable,
+          parent: listenable as Animation<double>,
           curve: Curves.easeInOut,
         ),
       );
   Animation<double> get offsetY => offsetYTween.animate(
         CurvedAnimation(
-          parent: listenable,
+          parent: listenable as Animation<double>,
           curve: Curves.easeInOut,
         ),
       );
@@ -109,8 +111,8 @@ class FlipTransition extends AnimatedWidget {
                   color: Colors.black12,
                   blurRadius:
                       blur.value, // has the effect of softening the shadow
-                  spreadRadius:
-                      shadowSpread.value, // has the effect of extending the shadow
+                  spreadRadius: shadowSpread
+                      .value, // has the effect of extending the shadow
                   offset: Offset(
                     offsetX.value,
                     offsetY.value,
@@ -119,11 +121,11 @@ class FlipTransition extends AnimatedWidget {
               ],
             ),
             child: RotationY(
+              rotationY: rotation.value >= pi / 2 ? 180 : 0,
               child: FadeTransition(
-                opacity: ReverseAnimation(listenable),
+                opacity: ReverseAnimation(listenable as Animation<double>),
                 child: child,
               ),
-              rotationY: rotation.value >= pi / 2 ? 180 : 0,
             ),
           ),
         ),
@@ -133,14 +135,14 @@ class FlipTransition extends AnimatedWidget {
 }
 
 class RotationY extends StatelessWidget {
+  const RotationY({Key key, @required this.child, this.rotationY = 0})
+      : super(key: key);
+
   //Degrees to rads constant
   static const double degrees2Radians = pi / 180;
 
   final Widget child;
   final double rotationY;
-
-  const RotationY({Key key, @required this.child, this.rotationY = 0})
-      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

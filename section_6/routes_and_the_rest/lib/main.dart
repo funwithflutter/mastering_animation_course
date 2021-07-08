@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_villains/villains/villains.dart';
-import 'package:routes_and_the_rest/ux/transitions/fade_transition_builder.dart';
 
 import 'ux/pages/home.dart';
 // import 'ux/transitions/fade_transition_builder.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatefulWidget {
+  const MyApp({Key key}) : super(key: key);
+
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -37,7 +38,7 @@ class _MyAppState extends State<MyApp> {
           },
         ),
       ),
-      home: Home(),
+      home: const Home(),
     );
   }
 }

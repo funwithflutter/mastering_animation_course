@@ -30,8 +30,8 @@ class LogoContainer extends StatelessWidget {
   );
 
   Route _createFadeRoute() {
-    return PageRouteBuilder(
-      transitionDuration: Duration(milliseconds: 600),
+    return PageRouteBuilder<dynamic>(
+      transitionDuration: const Duration(milliseconds: 600),
       pageBuilder: (context, animation, secondaryAnimation) =>
           InfoPage(content: content),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
@@ -55,7 +55,7 @@ class LogoContainer extends StatelessWidget {
         return Align(
           child: GestureDetector(
             onTap: () {
-              Navigator.of(context).push(_createFadeRoute());
+              Navigator.of(context).push<dynamic>(_createFadeRoute());
 
               /// EXAMPLE:
               /// The following is used as an example to use the default
@@ -71,13 +71,13 @@ class LogoContainer extends StatelessWidget {
               // );
             },
             child: Container(
-              margin: EdgeInsets.all(8),
+              margin: const EdgeInsets.all(8),
               height: size,
               width: size,
               child: Card(
                 color: gummentalColor,
                 elevation: 5 * scale,
-                shape: CircleBorder(),
+                shape: const CircleBorder(),
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: _heroImage(),

@@ -25,9 +25,9 @@ class LinePainter extends CustomPainter {
     final point1 = max(0.0, widthProgress - _gap);
     final point2 = min(widthProgress + _gap, size.width);
 
-    canvas.drawLine(Offset(0, height), Offset(point1, height), linePaint);
-    canvas.drawLine(
-        Offset(point2, height), Offset(size.width, height), linePaint);
+    canvas
+      ..drawLine(Offset(0, height), Offset(point1, height), linePaint)
+      ..drawLine(Offset(point2, height), Offset(size.width, height), linePaint);
   }
 
   @override

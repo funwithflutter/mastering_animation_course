@@ -29,16 +29,16 @@ class _LearnMoreButtonState extends State<LearnMoreButton>
   void initState() {
     _wigglePath = WigglePath(width: buttonWidth, height: buttonHeight);
     _controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 5));
+        AnimationController(vsync: this, duration: const Duration(seconds: 5));
     _animation = CurvedAnimation(parent: _controller, curve: Curves.easeInOut);
-    _controller.forward(from: 0);
-
-    _controller.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        _wigglePath.randomize();
-        _controller.forward(from: 0);
-      }
-    });
+    _controller
+      ..forward(from: 0)
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          _wigglePath.randomize();
+          _controller.forward(from: 0);
+        }
+      });
     super.initState();
   }
 
@@ -52,7 +52,7 @@ class _LearnMoreButtonState extends State<LearnMoreButton>
           _wigglePath.moveTo(_animation.value);
           return CustomPaint(
             painter: WigglePainter(wigglePath: _wigglePath),
-            child: Container(
+            child: SizedBox(
               width: buttonWidth,
               height: buttonHeight,
               child: Center(

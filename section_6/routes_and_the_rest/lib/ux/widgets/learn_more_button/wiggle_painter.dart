@@ -12,7 +12,7 @@ class WigglePainter extends CustomPainter {
   static final wigglePaint = Paint()..color = gummentalColor;
   static final shadowPaint = Paint()
     ..color = Colors.black38
-    ..maskFilter = MaskFilter.blur(BlurStyle.normal, 5);
+    ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 5);
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -42,9 +42,8 @@ class WigglePainter extends CustomPainter {
     }
 
     // canvas.drawShadow(path, Colors.black, 3, true);
-    final shadowPath = path.shift(Offset(3, 3));
-    canvas.drawPath(shadowPath, shadowPaint);
-    canvas.drawPath(path, wigglePaint);
+    final shadowPath = path.shift(const Offset(3, 3));
+    canvas..drawPath(shadowPath, shadowPaint)..drawPath(path, wigglePaint);
   }
 
   @override

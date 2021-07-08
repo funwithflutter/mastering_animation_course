@@ -46,7 +46,7 @@ class _LearnMorePageState extends State<LearnMorePage>
     _particleController = ParticleController();
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(
+      duration: const Duration(
         seconds: 10,
       ),
     );
@@ -66,7 +66,7 @@ class _LearnMorePageState extends State<LearnMorePage>
   void _animateDown() {
     _scrollController.animateTo(
       MediaQuery.of(context).size.height,
-      duration: Duration(milliseconds: 600),
+      duration: const Duration(milliseconds: 600),
       curve: Curves.ease,
     );
   }
@@ -74,6 +74,11 @@ class _LearnMorePageState extends State<LearnMorePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
       body: Stack(
         children: <Widget>[
           CustomScrollView(
@@ -130,7 +135,7 @@ class _LearnMorePageState extends State<LearnMorePage>
 }
 
 class LearnMoreHeader extends StatefulWidget {
-  LearnMoreHeader({Key key, this.visibility = 1}) : super(key: key);
+  const LearnMoreHeader({Key key, this.visibility = 1}) : super(key: key);
   final double visibility;
 
   @override
@@ -145,7 +150,7 @@ class _LearnMoreHeaderState extends State<LearnMoreHeader>
   @override
   void initState() {
     _animationController =
-        AnimationController(vsync: this, duration: Duration(seconds: 3));
+        AnimationController(vsync: this, duration: const Duration(seconds: 3));
     _animation =
         CurvedAnimation(parent: _animationController, curve: Curves.slowMiddle);
     _animationController.repeat();
@@ -165,13 +170,11 @@ class _LearnMoreHeaderState extends State<LearnMoreHeader>
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Container(
-            child: Text('Learn More',
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    color: antiFlashColor.withOpacity(widget.visibility),
-                    fontSize: 36 * widget.visibility)),
-          ),
+          Text('Learn More',
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                  color: antiFlashColor.withOpacity(widget.visibility),
+                  fontSize: 36 * widget.visibility)),
           AnimatedBuilder(
             animation: _animation,
             builder: (context, child) {
@@ -180,7 +183,7 @@ class _LearnMoreHeaderState extends State<LearnMoreHeader>
                 child: child,
               );
             },
-            child: SizedBox(
+            child: const SizedBox(
               height: 20,
               width: 200,
             ),
@@ -192,13 +195,13 @@ class _LearnMoreHeaderState extends State<LearnMoreHeader>
 }
 
 class ParticleController {
-  final Random random = Random();
-
   ParticleController({this.numberOfParticles = 20}) {
     List.generate(numberOfParticles, (_) {
       particles.add(Particle(random));
     });
   }
+
+  final Random random = Random();
 
   int numberOfParticles;
   List<Particle> particles = [];
@@ -215,15 +218,16 @@ class ParticleController {
 }
 
 class Particle {
+  Particle(this.random) {
+    _init();
+  }
+
   Offset _position;
   double radius;
   Paint paint;
   double _force;
 
-  Particle(this.random) {
-    _init();
-  }
-  final random;
+  final Random random;
 
   Offset get position => _position;
 
@@ -253,9 +257,9 @@ class Particle {
 }
 
 class ParticlePainter extends CustomPainter {
-  final List<Particle> particles;
+  const ParticlePainter(this.particles);
 
-  ParticlePainter(this.particles);
+  final List<Particle> particles;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -326,4 +330,13 @@ class LearnMoreSliverDelegateHeader implements SliverPersistentHeaderDelegate {
 
   @override
   OverScrollHeaderStretchConfiguration get stretchConfiguration => null;
+
+  @override
+  // TODO: implement showOnScreenConfiguration
+  PersistentHeaderShowOnScreenConfiguration get showOnScreenConfiguration =>
+      null;
+
+  @override
+  // TODO: implement vsync
+  TickerProvider get vsync => null;
 }

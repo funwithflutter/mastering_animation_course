@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class DemoButton extends StatelessWidget {
   const DemoButton({
-    Key key,
-    @required this.onPressed,
-    @required this.lable,
+    Key? key,
+    required this.onPressed,
+    required this.lable,
   }) : super(key: key);
 
   final VoidCallback onPressed;

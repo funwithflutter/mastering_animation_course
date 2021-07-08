@@ -4,7 +4,7 @@ import '../styles.dart';
 import '../widgets/animate_me_please.dart';
 
 class AlignExample extends StatefulWidget {
-  const AlignExample({Key key}) : super(key: key);
+  const AlignExample({Key? key}) : super(key: key);
 
   @override
   _AlignDemoState createState() => _AlignDemoState();
@@ -74,11 +74,10 @@ typedef VoidCallbackAlignment = void Function(Alignment);
 
 class AlignmentButton extends StatelessWidget {
   const AlignmentButton({
-    Key key,
-    @required this.alignment,
-    @required this.onPressed,
-  })  : assert(alignment != null && onPressed != null),
-        super(key: key);
+    Key? key,
+    required this.alignment,
+    required this.onPressed,
+  }) : super(key: key);
 
   final Alignment alignment;
   final VoidCallbackAlignment onPressed;

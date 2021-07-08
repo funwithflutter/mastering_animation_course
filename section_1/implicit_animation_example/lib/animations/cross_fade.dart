@@ -5,7 +5,7 @@ import '../widgets/animate_me_please.dart';
 import '../widgets/demo_button.dart';
 
 class CrossFadeExample extends StatefulWidget {
-  const CrossFadeExample({Key key}) : super(key: key);
+  const CrossFadeExample({Key? key}) : super(key: key);
 
   @override
   _CrossFadeExampleState createState() => _CrossFadeExampleState();

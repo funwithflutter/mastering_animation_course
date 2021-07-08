@@ -8,7 +8,7 @@ import '../styles.dart';
 import '../widgets/demo_button.dart';
 
 class ContainerExample extends StatefulWidget {
-  const ContainerExample({Key key}) : super(key: key);
+  const ContainerExample({Key? key}) : super(key: key);
 
   @override
   _ContainerExampleState createState() => _ContainerExampleState();

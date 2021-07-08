@@ -5,7 +5,7 @@ import '../widgets/animate_me_please.dart';
 import '../widgets/demo_button.dart';
 
 class PaddingExample extends StatefulWidget {
-  const PaddingExample({Key key}) : super(key: key);
+  const PaddingExample({Key? key}) : super(key: key);
 
   @override
   _PaddingExampleState createState() => _PaddingExampleState();

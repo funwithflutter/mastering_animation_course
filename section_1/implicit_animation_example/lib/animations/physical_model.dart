@@ -4,7 +4,7 @@ import '../styles.dart';
 import '../widgets/demo_button.dart';
 
 class PhysicalModelExample extends StatefulWidget {
-  const PhysicalModelExample({Key key}) : super(key: key);
+  const PhysicalModelExample({Key? key}) : super(key: key);
 
   @override
   _PhysicalModelExampleState createState() => _PhysicalModelExampleState();

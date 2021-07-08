@@ -4,7 +4,7 @@ import '../styles.dart';
 import '../widgets/animate_me_please.dart';
 
 class OpacityExample extends StatefulWidget {
-  const OpacityExample({Key key}) : super(key: key);
+  const OpacityExample({Key? key}) : super(key: key);
 
   @override
   _OpacityExampleState createState() => _OpacityExampleState();

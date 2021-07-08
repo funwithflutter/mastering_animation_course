@@ -3,7 +3,7 @@ import '../styles.dart';
 
 class AnimateMePlease extends StatelessWidget {
   const AnimateMePlease({
-    Key key,
+    Key? key,
     this.color = darkBlue,
   }) : super(key: key);
 

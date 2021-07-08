@@ -8,7 +8,7 @@ enum MenuCommands {
 }
 
 class MenuPopupButton extends StatelessWidget {
-  const MenuPopupButton({Key key}) : super(key: key);
+  const MenuPopupButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

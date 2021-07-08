@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class AnimatedListPage extends StatefulWidget {
-  const AnimatedListPage({Key key}) : super(key: key);
+  const AnimatedListPage({Key? key}) : super(key: key);
 
   @override
   _AnimatedListPageState createState() => _AnimatedListPageState();
@@ -20,19 +20,19 @@ class AnimatedListPage extends StatefulWidget {
 
 class _AnimatedListPageState extends State<AnimatedListPage>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-  Animation<double> _menuAnimation;
+  late AnimationController _controller;
+  late Animation<double> _menuAnimation;
 
   final _listKey = GlobalKey<AnimatedListState>();
   final _scrollController = ScrollController();
 
-  PhrasesProvider _phrasesProvider;
+  late PhrasesProvider _phrasesProvider;
 
   @override
   void initState() {
+    super.initState();
     _phrasesProvider = Provider.of<PhrasesProvider>(context, listen: false);
     _initAnimation();
-    super.initState();
   }
 
   @override
@@ -67,20 +67,20 @@ class _AnimatedListPageState extends State<AnimatedListPage>
 
   void _addRandomItemToList() {
     _phrasesProvider.addRandomItemToList();
-    _listKey.currentState.insertItem(_phrasesProvider.length - 1);
+    _listKey.currentState!.insertItem(_phrasesProvider.length - 1);
     _scrollListToBottom();
   }
 
   void _addItemToList(PhraseModel phrase, int index) {
     _phrasesProvider.addItemToList(phrase, index);
-    _listKey.currentState.insertItem(index);
+    _listKey.currentState!.insertItem(index);
   }
 
   void _removeItemFromList(int index) {
     _phrasesProvider.removeItemFromList(
       index,
     );
-    _listKey.currentState.removeItem(
+    _listKey.currentState!.removeItem(
       index,
       (_, animation) {
         return Container();

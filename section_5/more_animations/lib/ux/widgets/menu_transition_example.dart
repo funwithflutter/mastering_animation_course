@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class MenuTransitionExample extends StatusTransitionWidget {
   const MenuTransitionExample({
-    Key key,
-    @required Animation<double> animation,
-    this.child,
+    Key? key,
+    required Animation<double> animation,
+    required this.child,
   }) : super(key: key, animation: animation);
 
   final Widget child;

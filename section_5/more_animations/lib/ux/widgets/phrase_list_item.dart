@@ -8,11 +8,11 @@ import 'package:recase/recase.dart';
 
 class PhraseListItem extends StatefulWidget {
   const PhraseListItem({
-    Key key,
-    @required this.phraseModel,
-    @required this.index,
-    @required this.onDismissed,
-    this.undoPressed,
+    Key? key,
+    required this.phraseModel,
+    required this.index,
+    required this.onDismissed,
+    required this.undoPressed,
   }) : super(key: key);
 
   final PhraseModel phraseModel;
@@ -44,9 +44,7 @@ class _PhraseListItemState extends State<PhraseListItem> {
             label: 'Undo',
             textColor: Theme.of(context).accentColor,
             onPressed: () {
-              if (widget.undoPressed != null) {
-                widget.undoPressed(widget.phraseModel, widget.index);
-              }
+              widget.undoPressed(widget.phraseModel, widget.index);
             },
           ),
         );

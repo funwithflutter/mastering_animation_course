@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 class RotateScaleTransition extends AnimatedWidget {
-  const RotateScaleTransition(
-      {Key key, @required Animation<double> animation, this.child})
-      : assert(animation != null),
-        super(key: key, listenable: animation);
+  const RotateScaleTransition({
+    Key? key,
+    required Animation<double> animation,
+    required this.child,
+  }) : super(key: key, listenable: animation);
 
   final Widget child;
 

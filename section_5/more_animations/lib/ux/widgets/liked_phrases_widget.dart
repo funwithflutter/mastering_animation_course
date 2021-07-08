@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:recase/recase.dart';
 
 class LikedPhrasesWidget extends StatelessWidget {
-  const LikedPhrasesWidget({Key key}) : super(key: key);
+  const LikedPhrasesWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

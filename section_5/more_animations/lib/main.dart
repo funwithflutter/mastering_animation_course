@@ -9,11 +9,13 @@ import 'package:provider/provider.dart';
 void main() => runApp(
       ChangeNotifierProvider(
         builder: (context) => ThemeModel(),
-        child: MyApp(),
+        child: const MyApp(),
       ),
     );
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Consumer<ThemeModel>(
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
       },
       child: ChangeNotifierProvider(
         builder: (context) => PhrasesProvider(),
-        child: AnimatedListPage(),
+        child: const AnimatedListPage(),
       ),
     );
   }

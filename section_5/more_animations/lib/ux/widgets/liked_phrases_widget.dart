@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:recase/recase.dart';
 
 class LikedPhrasesWidget extends StatelessWidget {
-  LikedPhrasesWidget({Key key}) : super(key: key);
+  const LikedPhrasesWidget({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class LikedPhrasesWidget extends StatelessWidget {
                 return Center(
                   child: Text(
                     'Nothing loved yet :(',
-                    style: Theme.of(context).textTheme.headline,
+                    style: Theme.of(context).textTheme.headline5,
                   ),
                 );
               }
@@ -45,7 +45,7 @@ class LikedPhrasesWidget extends StatelessWidget {
                       duration: const Duration(milliseconds: 375),
                       child: SlideAnimation(
                         verticalOffset: 200.0,
-                        duration: Duration(milliseconds: 500),
+                        duration: const Duration(milliseconds: 500),
                         child: FadeInAnimation(
                           child: Center(
                             child: Padding(
@@ -53,7 +53,7 @@ class LikedPhrasesWidget extends StatelessWidget {
                               child: Text(
                                 ReCase(phrases.likedPhrases[index].phrase)
                                     .titleCase,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 28,
                                 ),
                               ),

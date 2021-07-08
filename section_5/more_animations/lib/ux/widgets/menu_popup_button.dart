@@ -8,6 +8,8 @@ enum MenuCommands {
 }
 
 class MenuPopupButton extends StatelessWidget {
+  const MenuPopupButton({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Consumer<ThemeModel>(
@@ -19,19 +21,18 @@ class MenuPopupButton extends StatelessWidget {
                 themeModel.changeDarkModeSetting();
                 break;
               default:
-                print(result);
                 break;
             }
           },
-          offset: Offset(0, 48),
+          offset: const Offset(0, 48),
           itemBuilder: (context) => <PopupMenuEntry<MenuCommands>>[
             CheckedPopupMenuItem<MenuCommands>(
               checked: themeModel.darkMode,
               value: MenuCommands.darkModeSwitch,
-              child: Text('Dark Mode'),
+              child: const Text('Dark Mode'),
             ),
-            PopupMenuDivider(),
-            PopupMenuItem<MenuCommands>(
+            const PopupMenuDivider(),
+            const PopupMenuItem<MenuCommands>(
               value: MenuCommands.settings,
               child: ListTile(
                 leading: Icon(Icons.settings),

@@ -9,7 +9,7 @@ import 'package:transition_widgets_example/transitions.dart/slide_transition.dar
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

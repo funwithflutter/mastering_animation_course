@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class FadeTransitionExample extends StatefulWidget {
-  const FadeTransitionExample({Key key}) : super(key: key);
+  const FadeTransitionExample({Key? key}) : super(key: key);
 
   @override
   _FadeTransitionExampleState createState() => _FadeTransitionExampleState();
@@ -9,19 +9,19 @@ class FadeTransitionExample extends StatefulWidget {
 
 class _FadeTransitionExampleState extends State<FadeTransitionExample>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
+  late AnimationController _controller;
 
   String _text = 'Fade In';
   String _key = 'fadein';
 
   @override
   void initState() {
+    super.initState();
     _controller =
         AnimationController(vsync: this, duration: const Duration(seconds: 5));
     _controller
       ..repeat(reverse: true)
       ..addStatusListener(_animationStatusListener);
-    super.initState();
   }
 
   void _animationStatusListener(AnimationStatus status) {

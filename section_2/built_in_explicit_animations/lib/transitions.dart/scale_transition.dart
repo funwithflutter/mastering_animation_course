@@ -3,7 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:transition_widgets_example/styles.dart';
 
 class ScaleTransitionExample extends HookWidget {
-  const ScaleTransitionExample({Key key}) : super(key: key);
+  const ScaleTransitionExample({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

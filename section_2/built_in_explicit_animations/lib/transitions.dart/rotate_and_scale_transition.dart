@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:transition_widgets_example/styles.dart';
 
 class RotateAndScaleTransitionExample extends StatefulWidget {
-  const RotateAndScaleTransitionExample({Key key}) : super(key: key);
+  const RotateAndScaleTransitionExample({Key? key}) : super(key: key);
 
   @override
   _RotateAndScaleTransitionExampleState createState() =>
@@ -12,13 +12,14 @@ class RotateAndScaleTransitionExample extends StatefulWidget {
 class _RotateAndScaleTransitionExampleState
     extends State<RotateAndScaleTransitionExample>
     with TickerProviderStateMixin {
-  AnimationController _controller;
-  AnimationController _controller2;
-  Animation<double> _rotateAnimation;
-  Animation<double> _scaleAnimation;
+  late AnimationController _controller;
+  late AnimationController _controller2;
+  late Animation<double> _rotateAnimation;
+  late Animation<double> _scaleAnimation;
 
   @override
   void initState() {
+    super.initState();
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 3),
@@ -33,12 +34,12 @@ class _RotateAndScaleTransitionExampleState
         .animate(CurvedAnimation(parent: _controller2, curve: Curves.ease));
     _controller.repeat(reverse: true);
     _controller2.forward();
-    super.initState();
   }
 
   @override
   void dispose() {
     _controller.dispose();
+    _controller2.dispose();
     super.dispose();
   }
 

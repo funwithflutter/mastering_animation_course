@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:transition_widgets_example/styles.dart';
 
 class AlignTransitionExample extends StatefulWidget {
-  const AlignTransitionExample({Key key}) : super(key: key);
+  const AlignTransitionExample({Key? key}) : super(key: key);
 
   @override
   _AlignTransitionExampleState createState() => _AlignTransitionExampleState();
@@ -10,11 +10,12 @@ class AlignTransitionExample extends StatefulWidget {
 
 class _AlignTransitionExampleState extends State<AlignTransitionExample>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-  Animation<AlignmentGeometry> _animation;
+  late AnimationController _controller;
+  late Animation<AlignmentGeometry> _animation;
 
   @override
   void initState() {
+    super.initState();
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 2),
@@ -24,7 +25,6 @@ class _AlignTransitionExampleState extends State<AlignTransitionExample>
         .chain(CurveTween(curve: Curves.bounceOut))
         .animate(_controller);
     _controller.repeat(reverse: true);
-    super.initState();
   }
 
   @override

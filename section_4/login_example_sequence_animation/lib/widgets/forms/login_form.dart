@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login/widgets/determine_visibility.dart';
 
 import '../../styles/colors.dart';
 import 'call_to_action_button.dart';
@@ -43,16 +44,25 @@ class LoginForm extends StatelessWidget {
                 text: 'Login',
                 color: headerLoginColor,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  const CallToActionText("Don't have an account?"),
-                  CallToActionButton(
-                    onPressed: onSignUpPressed,
-                    text: 'Sign Up',
-                    color: headerSignUpColor,
-                  ),
-                ],
+              DetermineVisibility(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    const Expanded(
+                      flex: 3,
+                      child: Center(
+                          child: CallToActionText("Don't have an account?")),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: CallToActionButton(
+                        onPressed: onSignUpPressed,
+                        text: 'Sign Up',
+                        color: headerSignUpColor,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

@@ -6,9 +6,11 @@ import 'package:transition_widgets_example/transitions.dart/rotate_and_scale_tra
 import 'package:transition_widgets_example/transitions.dart/scale_transition.dart';
 import 'package:transition_widgets_example/transitions.dart/slide_transition.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,13 +18,13 @@ class MyApp extends StatelessWidget {
       theme: theme,
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Transitions'),
+          title: const Text('Transitions'),
         ),
         body: Center(
           child: SlideTransitionExample(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
+              children: const <Widget>[
                 AlignTransitionExample(),
                 RotateAndScaleTransitionExample(),
                 FadeTransitionExample(),

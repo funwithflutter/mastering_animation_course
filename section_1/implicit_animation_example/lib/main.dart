@@ -11,9 +11,11 @@ import 'animations/positioned.dart';
 import 'styles.dart';
 import 'widgets/demo_page.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,9 +24,9 @@ class MyApp extends StatelessWidget {
       theme: theme,
       home: Scaffold(
           appBar: AppBar(
-            title: Text('Implicit Animations'),
+            title: const Text('Implicit Animations'),
           ),
-          body: ImplicitAnimations()),
+          body: const ImplicitAnimations()),
     );
   }
 }
@@ -35,7 +37,7 @@ class ImplicitAnimations extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageView(
-      children: <Widget>[
+      children: const <Widget>[
         DemoPage(title: 'Container', child: ContainerExample()),
         DemoPage(title: 'Cross Fade', child: CrossFadeExample()),
         DemoPage(title: 'Physical Model', child: PhysicalModelExample()),

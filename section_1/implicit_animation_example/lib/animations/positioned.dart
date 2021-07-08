@@ -4,7 +4,7 @@ import '../widgets/animate_me_please.dart';
 import '../widgets/demo_button.dart';
 
 class PositionedExample extends StatefulWidget {
-  PositionedExample({Key key}) : super(key: key);
+  const PositionedExample({Key key}) : super(key: key);
 
   @override
   _PositionedExampleState createState() => _PositionedExampleState();
@@ -54,9 +54,9 @@ class _PositionedExampleState extends State<PositionedExample> {
           top: _top,
           width: _width,
           height: _height,
-          duration: Duration(milliseconds: 600),
+          duration: const Duration(milliseconds: 600),
           curve: Curves.ease,
-          child: AnimateMePlease(),
+          child: const AnimateMePlease(),
         ),
         Align(
           alignment: Alignment.bottomCenter,

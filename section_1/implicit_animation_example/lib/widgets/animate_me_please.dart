@@ -12,15 +12,13 @@ class AnimateMePlease extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Container(
-        color: color,
-        width: 200,
-        height: 200,
-        child: Center(
-          child: Text(
-            'This can be anything.',
-            style: TextStyle(color: Colors.white, fontSize: 18),
-          ),
+      color: color,
+      width: 200,
+      height: 200,
+      child: const Center(
+        child: Text(
+          'This can be anything.',
+          style: TextStyle(color: Colors.white, fontSize: 18),
         ),
       ),
     );

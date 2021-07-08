@@ -14,13 +14,13 @@ class _OpacityExampleState extends State<OpacityExample> {
   var _sliderValue = 1.0;
   var _opacity = 1.0;
 
-  void _changeSliderValue(value) {
+  void _changeSliderValue(double value) {
     setState(() {
       _sliderValue = value;
     });
   }
 
-  void _changeOpacity(value) {
+  void _changeOpacity(double value) {
     setState(() {
       _opacity = value;
     });
@@ -34,10 +34,10 @@ class _OpacityExampleState extends State<OpacityExample> {
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: AnimatedOpacity(
-            duration: Duration(seconds: 1),
+            duration: const Duration(seconds: 1),
             opacity: _opacity,
             curve: Curves.ease,
-            child: AnimateMePlease(color: salmon),
+            child: const AnimateMePlease(color: salmon),
           ),
         ),
         Padding(

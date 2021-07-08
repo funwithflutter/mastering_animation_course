@@ -4,7 +4,7 @@ import '../styles.dart';
 import '../widgets/animate_me_please.dart';
 
 class AlignExample extends StatefulWidget {
-  AlignExample({Key key}) : super(key: key);
+  const AlignExample({Key key}) : super(key: key);
 
   @override
   _AlignDemoState createState() => _AlignDemoState();
@@ -13,7 +13,7 @@ class AlignExample extends StatefulWidget {
 class _AlignDemoState extends State<AlignExample> {
   Alignment _alignment = Alignment.center;
 
-  void _changeAlignment(value) {
+  void _changeAlignment(Alignment value) {
     setState(() {
       _alignment = value;
     });
@@ -25,9 +25,9 @@ class _AlignDemoState extends State<AlignExample> {
       children: <Widget>[
         AnimatedAlign(
           alignment: _alignment,
-          duration: Duration(milliseconds: 600),
+          duration: const Duration(milliseconds: 600),
           curve: Curves.ease,
-          child: AnimateMePlease(color: salmon),
+          child: const AnimateMePlease(color: salmon),
         ),
         AlignmentButton(
           alignment: Alignment.topLeft,
@@ -88,7 +88,7 @@ class AlignmentButton extends StatelessWidget {
     return Align(
       alignment: alignment,
       child: IconButton(
-        icon: Icon(Icons.control_point),
+        icon: const Icon(Icons.control_point),
         onPressed: () {
           onPressed(alignment);
         },

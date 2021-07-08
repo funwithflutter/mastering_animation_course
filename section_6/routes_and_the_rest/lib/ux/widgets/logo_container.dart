@@ -6,9 +6,9 @@ import '../styles/styles.dart';
 
 class LogoContainer extends StatelessWidget {
   const LogoContainer({
-    Key key,
-    @required this.content,
-    @required this.scale,
+    Key? key,
+    required this.content,
+    required this.scale,
   }) : super(key: key);
 
   final ContentModel content;

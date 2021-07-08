@@ -12,7 +12,7 @@ import '../widgets/zoom_page_view.dart';
 import 'learn_more_page.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key key}) : super(key: key);
+  const Home({Key? key}) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();
@@ -26,19 +26,19 @@ class _HomeState extends State<Home>
 
   final ValueNotifier<double> _valueNotifier = ValueNotifier(0.5);
 
-  PageController _pageController;
-  AnimationController _controller;
+  late PageController _pageController;
+  late AnimationController _controller;
 
   @override
   void initState() {
+    super.initState();
+
     _pageController = PageController(
         initialPage: _initialPage, viewportFraction: _viewPortFraction);
     _controller = AnimationController(
       vsync: this,
       duration: _transitionDuration,
     );
-
-    super.initState();
   }
 
   @override
@@ -120,7 +120,7 @@ class _HomeState extends State<Home>
           children: <Widget>[
             ValueListenableBuilder(
               valueListenable: _valueNotifier,
-              builder: (BuildContext context, double value, Widget child) {
+              builder: (BuildContext context, double value, Widget? child) {
                 return BinarayBackround(value: _valueNotifier.value);
               },
             ),

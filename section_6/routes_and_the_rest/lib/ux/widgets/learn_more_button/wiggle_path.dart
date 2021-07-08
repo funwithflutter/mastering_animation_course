@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 
 class WigglePath {
   WigglePath({
-    this.width,
-    this.height,
+    required this.width,
+    required this.height,
   }) {
     _generateBasePoints();
     randomize();
@@ -51,13 +51,13 @@ class WigglePath {
   void moveTo(double progress) {
     for (var i = 0; i < points.length; i++) {
       _currentPoints[i] =
-          Offset.lerp(_previousPoints[i], _targetPoints[i], progress);
+          Offset.lerp(_previousPoints[i], _targetPoints[i], progress)!;
     }
   }
 
   Offset _randomOffset() {
     final dx = _random.nextDouble();
     final dy = _random.nextDouble();
-    return Offset(lerpDouble(-10, 10, dx), lerpDouble(-30, 30, dy));
+    return Offset(lerpDouble(-10, 10, dx)!, lerpDouble(-30, 30, dy)!);
   }
 }

@@ -1,10 +1,10 @@
 class ContentModel {
   const ContentModel({
-    this.title,
-    this.description,
-    this.logoLocation,
-    this.logoTag,
-    this.titleTag,
+    required this.title,
+    required this.description,
+    required this.logoLocation,
+    required this.logoTag,
+    required this.titleTag,
   });
 
   final String title;

@@ -9,7 +9,7 @@ import '../paint/line_painter.dart';
 import '../styles/styles.dart';
 
 class LearnMorePage extends StatefulWidget {
-  const LearnMorePage({Key key}) : super(key: key);
+  const LearnMorePage({Key? key}) : super(key: key);
 
   @override
   _LearnMorePageState createState() => _LearnMorePageState();
@@ -19,17 +19,17 @@ class _LearnMorePageState extends State<LearnMorePage>
     with SingleTickerProviderStateMixin {
   final ScrollController _scrollController = ScrollController();
 
-  ParticleController _particleController;
-  AnimationController _animationController;
+  late ParticleController _particleController;
+  late AnimationController _animationController;
 
-  double _pixels;
-  int _timestamp;
+  double? _pixels;
+  late int _timestamp;
 
   void _scrollListener() {
     final pixels = _scrollController.position.pixels;
     final timestamp = DateTime.now().millisecondsSinceEpoch;
     if (_pixels != null) {
-      var velocity = ((pixels - _pixels) / (timestamp - _timestamp)) / 100;
+      var velocity = ((pixels - _pixels!) / (timestamp - _timestamp)) / 100;
       if (velocity > 0) {
         velocity = min(velocity, 0.1);
       } else {
@@ -43,6 +43,8 @@ class _LearnMorePageState extends State<LearnMorePage>
 
   @override
   void initState() {
+    super.initState();
+
     _particleController = ParticleController();
     _animationController = AnimationController(
       vsync: this,
@@ -52,14 +54,14 @@ class _LearnMorePageState extends State<LearnMorePage>
     );
     _animationController.repeat();
 
-    // _scrollController.position.
     _scrollController.addListener(_scrollListener);
-    super.initState();
   }
 
   @override
   void dispose() {
     _animationController.dispose();
+    _scrollController.removeListener(_scrollListener);
+
     super.dispose();
   }
 
@@ -135,7 +137,10 @@ class _LearnMorePageState extends State<LearnMorePage>
 }
 
 class LearnMoreHeader extends StatefulWidget {
-  const LearnMoreHeader({Key key, this.visibility = 1}) : super(key: key);
+  const LearnMoreHeader({
+    Key? key,
+    this.visibility = 1,
+  }) : super(key: key);
   final double visibility;
 
   @override
@@ -144,22 +149,23 @@ class LearnMoreHeader extends StatefulWidget {
 
 class _LearnMoreHeaderState extends State<LearnMoreHeader>
     with SingleTickerProviderStateMixin {
-  AnimationController _animationController;
-  CurvedAnimation _animation;
+  late AnimationController _animationController;
+  late CurvedAnimation _animation;
 
   @override
   void initState() {
+    super.initState();
     _animationController =
         AnimationController(vsync: this, duration: const Duration(seconds: 3));
     _animation =
         CurvedAnimation(parent: _animationController, curve: Curves.slowMiddle);
     _animationController.repeat();
-    super.initState();
   }
 
   @override
   void dispose() {
     _animationController.dispose();
+
     super.dispose();
   }
 
@@ -206,11 +212,11 @@ class ParticleController {
   int numberOfParticles;
   List<Particle> particles = [];
 
-  void update({double force}) {
+  void update({double? force}) {
     for (final particle in particles) {
       particle.applyForceUp(force: force);
       if (particle.position.dy < 0.0) {
-        final yPos = 1 + lerpDouble(0.1, 0.3, random.nextDouble());
+        final yPos = 1 + lerpDouble(0.1, 0.3, random.nextDouble())!;
         particle.reset(y: yPos);
       }
     }
@@ -222,10 +228,10 @@ class Particle {
     _init();
   }
 
-  Offset _position;
-  double radius;
-  Paint paint;
-  double _force;
+  late Offset _position;
+  late double radius;
+  late Paint paint;
+  double? _force;
 
   final Random random;
 
@@ -240,19 +246,19 @@ class Particle {
     _force = _randomForce();
   }
 
-  void applyForceUp({double force}) {
-    final newForce = _force + (force ?? 0);
+  void applyForceUp({double? force}) {
+    final newForce = (_force ?? 0) + (force ?? 0);
     _position += Offset(0, -newForce);
   }
 
-  void reset({double y}) {
+  void reset({double? y}) {
     y ??= random.nextDouble();
     _position = Offset(random.nextDouble(), y);
     _force = _randomForce();
   }
 
   double _randomForce() {
-    return lerpDouble(0.001, 0.005, random.nextDouble());
+    return lerpDouble(0.001, 0.005, random.nextDouble())!;
   }
 }
 
@@ -275,11 +281,11 @@ class ParticlePainter extends CustomPainter {
   }
 }
 
-class LearnMoreSliverDelegateHeader implements SliverPersistentHeaderDelegate {
+class LearnMoreSliverDelegateHeader extends SliverPersistentHeaderDelegate {
   LearnMoreSliverDelegateHeader({
-    @required this.minExtent,
-    @required this.maxExtent,
-    this.onDownPressed,
+    required this.minExtent,
+    required this.maxExtent,
+    required this.onDownPressed,
   });
 
   @override
@@ -326,17 +332,8 @@ class LearnMoreSliverDelegateHeader implements SliverPersistentHeaderDelegate {
   }
 
   @override
-  FloatingHeaderSnapConfiguration get snapConfiguration => null;
+  FloatingHeaderSnapConfiguration? get snapConfiguration => null;
 
   @override
-  OverScrollHeaderStretchConfiguration get stretchConfiguration => null;
-
-  @override
-  // TODO: implement showOnScreenConfiguration
-  PersistentHeaderShowOnScreenConfiguration get showOnScreenConfiguration =>
-      null;
-
-  @override
-  // TODO: implement vsync
-  TickerProvider get vsync => null;
+  OverScrollHeaderStretchConfiguration? get stretchConfiguration => null;
 }

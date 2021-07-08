@@ -7,8 +7,8 @@ import '../styles/styles.dart';
 
 class InfoPage extends StatelessWidget {
   const InfoPage({
-    Key key,
-    @required this.content,
+    Key? key,
+    required this.content,
   }) : super(key: key);
 
   final ContentModel content;

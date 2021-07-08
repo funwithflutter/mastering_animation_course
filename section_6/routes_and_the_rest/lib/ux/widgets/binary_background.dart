@@ -4,8 +4,8 @@ import '../styles/styles.dart';
 
 class BinarayBackround extends StatelessWidget {
   const BinarayBackround({
-    Key key,
-    @required this.value,
+    Key? key,
+    required this.value,
   }) : super(key: key);
 
   final double value;
@@ -26,7 +26,7 @@ class BinarayBackround extends StatelessWidget {
               const Alignment(-0.9, 0),
               const Alignment(0.9, 0),
               value,
-            ),
+            )!,
             fit: BoxFit.cover,
           ),
         ),

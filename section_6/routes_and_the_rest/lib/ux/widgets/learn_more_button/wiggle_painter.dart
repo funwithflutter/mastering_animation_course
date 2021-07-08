@@ -5,7 +5,7 @@ import 'wiggle_path.dart';
 
 class WigglePainter extends CustomPainter {
   WigglePainter({
-    @required this.wigglePath,
+    required this.wigglePath,
   });
 
   final WigglePath wigglePath;

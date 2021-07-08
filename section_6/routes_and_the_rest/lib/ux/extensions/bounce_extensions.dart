@@ -9,7 +9,10 @@ extension BounceExtension on Widget {
 }
 
 class _BounceOutAnimation extends StatefulWidget {
-  const _BounceOutAnimation({Key key, this.child}) : super(key: key);
+  const _BounceOutAnimation({
+    Key? key,
+    required this.child,
+  }) : super(key: key);
 
   final Widget child;
 
@@ -19,8 +22,8 @@ class _BounceOutAnimation extends StatefulWidget {
 
 class _BounceOutAnimationState extends State<_BounceOutAnimation>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-  Animation<double> _animation;
+  late AnimationController _controller;
+  late Animation<double> _animation;
 
   static final TweenSequence<double> _offsetTween = TweenSequence(
     <TweenSequenceItem<double>>[
@@ -40,12 +43,13 @@ class _BounceOutAnimationState extends State<_BounceOutAnimation>
 
   @override
   void initState() {
+    super.initState();
+
     _controller =
         AnimationController(vsync: this, duration: const Duration(seconds: 2));
     _animation = _offsetTween.animate(_controller);
 
     _controller.repeat();
-    super.initState();
   }
 
   @override

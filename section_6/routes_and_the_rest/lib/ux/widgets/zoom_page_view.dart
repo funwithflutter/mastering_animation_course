@@ -11,9 +11,11 @@ const scaleFraction = 0.7;
 const fullScale = 1.0;
 
 class ZoomPageScroll extends StatefulWidget {
-  const ZoomPageScroll(
-      {Key key, @required this.pageController, @required this.value})
-      : super(key: key);
+  const ZoomPageScroll({
+    Key? key,
+    required this.pageController,
+    required this.value,
+  }) : super(key: key);
 
   final PageController pageController;
   final ValueNotifier<double> value;
@@ -28,7 +30,7 @@ class _ZoomPageScrollState extends State<ZoomPageScroll> {
 
   PageController get _pageController => widget.pageController;
 
-  double page = 2.0;
+  double? page = 2.0;
   int _currentPage = _initialPage;
 
   bool _scrollNotification(ScrollNotification notification) {
@@ -70,7 +72,7 @@ class _ZoomPageScrollState extends State<ZoomPageScroll> {
               itemCount: content.length,
               itemBuilder: (context, index) {
                 final scale =
-                    max(scaleFraction, (fullScale - (index - page).abs()));
+                    max(scaleFraction, (fullScale - (index - page!).abs()));
                 return LogoContainer(
                   content: content[index],
                   scale: scale,

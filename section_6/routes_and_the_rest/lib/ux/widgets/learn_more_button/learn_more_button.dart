@@ -8,7 +8,10 @@ import 'wiggle_painter.dart';
 import 'wiggle_path.dart';
 
 class LearnMoreButton extends StatefulWidget {
-  const LearnMoreButton({Key key, this.onPressed}) : super(key: key);
+  const LearnMoreButton({
+    Key? key,
+    required this.onPressed,
+  }) : super(key: key);
 
   final VoidCallback onPressed;
 
@@ -18,15 +21,17 @@ class LearnMoreButton extends StatefulWidget {
 
 class _LearnMoreButtonState extends State<LearnMoreButton>
     with SingleTickerProviderStateMixin {
-  WigglePath _wigglePath;
-  AnimationController _controller;
-  Animation<double> _animation;
+  late WigglePath _wigglePath;
+  late AnimationController _controller;
+  late Animation<double> _animation;
 
   static const buttonWidth = 300.0;
   static const buttonHeight = 200.0;
 
   @override
   void initState() {
+    super.initState();
+
     _wigglePath = WigglePath(width: buttonWidth, height: buttonHeight);
     _controller =
         AnimationController(vsync: this, duration: const Duration(seconds: 5));
@@ -39,7 +44,13 @@ class _LearnMoreButtonState extends State<LearnMoreButton>
           _controller.forward(from: 0);
         }
       });
-    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+
+    super.dispose();
   }
 
   @override

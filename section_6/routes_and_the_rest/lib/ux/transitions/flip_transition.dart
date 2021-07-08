@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 
 class FlipTransition extends AnimatedWidget {
   FlipTransition({
-    Key key,
-    Animation<double> animation,
-    this.child,
+    Key? key,
+    required Animation<double> animation,
+    required this.child,
     bool isEntry = true,
   })  : offsetXTween = Tween<double>(begin: isEntry ? -15 : 15, end: 2),
         scaleSequence = TweenSequence(
@@ -135,8 +135,11 @@ class FlipTransition extends AnimatedWidget {
 }
 
 class RotationY extends StatelessWidget {
-  const RotationY({Key key, @required this.child, this.rotationY = 0})
-      : super(key: key);
+  const RotationY({
+    Key? key,
+    required this.child,
+    this.rotationY = 0,
+  }) : super(key: key);
 
   //Degrees to rads constant
   static const double degrees2Radians = pi / 180;

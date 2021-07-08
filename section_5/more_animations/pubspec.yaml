@@ -19,11 +19,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^0.1.2
-  flutter_staggered_animations: ^0.1.2
-  provider: ^3.1.0+1
-  random_words: ^1.0.2
-  recase: ^2.0.1
+  cupertino_icons: ^1.0.3
+  flutter_staggered_animations: ^1.0.0
+  provider: ^5.0.0
+  english_words: ^4.0.0
+  recase: ^4.0.0
 
 dev_dependencies:
   flutter_test:

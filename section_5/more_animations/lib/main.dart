@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 
 void main() => runApp(
       ChangeNotifierProvider(
-        builder: (context) => ThemeModel(),
+        create: (context) => ThemeModel(),
         child: const MyApp(),
       ),
     );
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         );
       },
       child: ChangeNotifierProvider(
-        builder: (context) => PhrasesProvider(),
+        create: (context) => PhrasesProvider(),
         child: const AnimatedListPage(),
       ),
     );

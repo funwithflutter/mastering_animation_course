@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login/widgets/determine_visibility.dart';
 
 import '../../styles/colors.dart';
 import 'call_to_action_button.dart';
@@ -7,10 +8,10 @@ import 'text_input_box.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({
-    Key key,
-    @required this.onLoginPressed,
-    @required this.onSignUpPressed,
-    @required this.safeArea,
+    Key? key,
+    required this.onLoginPressed,
+    required this.onSignUpPressed,
+    required this.safeArea,
   }) : super(key: key);
 
   final VoidCallback onSignUpPressed;
@@ -24,39 +25,46 @@ class LoginForm extends StatelessWidget {
       child: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(top: safeArea),
-          child: Container(
-            child: Column(
-              children: <Widget>[
-                Padding(
-                    padding: const EdgeInsets.only(bottom: 16.0),
-                    child: CallToActionText('Please sign in to continue')),
-                TextInputBox(
-                  icon: Icons.email,
-                  hintText: 'Email',
-                ),
-                TextInputBox(
-                  icon: Icons.lock_outline,
-                  hintText: 'Password',
-                  obscureText: true,
-                ),
-                CallToActionButton(
-                  onPressed: onLoginPressed,
-                  text: 'Login',
-                  color: headerLoginColor,
-                ),
-                Row(
+          child: Column(
+            children: <Widget>[
+              const Padding(
+                  padding: EdgeInsets.only(bottom: 16.0),
+                  child: CallToActionText('Please sign in to continue')),
+              const TextInputBox(
+                icon: Icons.email,
+                hintText: 'Email',
+              ),
+              const TextInputBox(
+                icon: Icons.lock_outline,
+                hintText: 'Password',
+                obscureText: true,
+              ),
+              CallToActionButton(
+                onPressed: onLoginPressed,
+                text: 'Login',
+                color: headerLoginColor,
+              ),
+              DetermineVisibility(
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    CallToActionText("Don't have an account?"),
-                    CallToActionButton(
-                      onPressed: onSignUpPressed,
-                      text: 'Sign Up',
-                      color: headerSignUpColor,
+                    const Expanded(
+                      flex: 3,
+                      child: Center(
+                          child: CallToActionText("Don't have an account?")),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: CallToActionButton(
+                        onPressed: onSignUpPressed,
+                        text: 'Sign Up',
+                        color: headerSignUpColor,
+                      ),
                     ),
                   ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

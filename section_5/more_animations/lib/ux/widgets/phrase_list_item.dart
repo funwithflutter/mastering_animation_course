@@ -8,11 +8,11 @@ import 'package:recase/recase.dart';
 
 class PhraseListItem extends StatefulWidget {
   const PhraseListItem({
-    Key key,
-    @required this.phraseModel,
-    @required this.index,
-    @required this.onDismissed,
-    this.undoPressed,
+    Key? key,
+    required this.phraseModel,
+    required this.index,
+    required this.onDismissed,
+    required this.undoPressed,
   }) : super(key: key);
 
   final PhraseModel phraseModel;
@@ -25,8 +25,8 @@ class PhraseListItem extends StatefulWidget {
 }
 
 class _PhraseListItemState extends State<PhraseListItem> {
-  ValueKey firstIconKey = ValueKey('like');
-  ValueKey secondIconKey = ValueKey('unlike');
+  ValueKey firstIconKey = const ValueKey<String>('like');
+  ValueKey secondIconKey = const ValueKey<String>('unlike');
 
   void _onLikePressed() {
     Provider.of<PhrasesProvider>(context, listen: false).likeItem(widget.index);
@@ -39,19 +39,17 @@ class _PhraseListItemState extends State<PhraseListItem> {
       onDismissed: (direction) {
         widget.onDismissed(direction, widget.index);
         final snackBar = SnackBar(
-          content: Text('Phrase removed'),
+          content: const Text('Phrase removed'),
           action: SnackBarAction(
             label: 'Undo',
             textColor: Theme.of(context).accentColor,
             onPressed: () {
-              if (widget.undoPressed != null) {
-                widget.undoPressed(widget.phraseModel, widget.index);
-              }
+              widget.undoPressed(widget.phraseModel, widget.index);
             },
           ),
         );
-        Scaffold.of(context).removeCurrentSnackBar();
-        Scaffold.of(context).showSnackBar(snackBar);
+        ScaffoldMessenger.of(context).removeCurrentSnackBar();
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
       },
       background: backgroundGradient(salmon, Colors.transparent),
       secondaryBackground: backgroundGradient(Colors.transparent, mustard),
@@ -61,7 +59,7 @@ class _PhraseListItemState extends State<PhraseListItem> {
         trailing: GestureDetector(
           onTap: _onLikePressed,
           child: AnimatedSwitcher(
-            duration: Duration(milliseconds: 300),
+            duration: const Duration(milliseconds: 300),
             switchInCurve: Curves.ease,
             switchOutCurve: Curves.easeOut,
             child: widget.phraseModel.like

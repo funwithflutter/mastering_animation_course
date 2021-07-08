@@ -8,7 +8,10 @@ import 'wiggle_painter.dart';
 import 'wiggle_path.dart';
 
 class LearnMoreButton extends StatefulWidget {
-  const LearnMoreButton({Key key, this.onPressed}) : super(key: key);
+  const LearnMoreButton({
+    Key? key,
+    required this.onPressed,
+  }) : super(key: key);
 
   final VoidCallback onPressed;
 
@@ -18,28 +21,36 @@ class LearnMoreButton extends StatefulWidget {
 
 class _LearnMoreButtonState extends State<LearnMoreButton>
     with SingleTickerProviderStateMixin {
-  WigglePath _wigglePath;
-  AnimationController _controller;
-  Animation<double> _animation;
+  late WigglePath _wigglePath;
+  late AnimationController _controller;
+  late Animation<double> _animation;
 
   static const buttonWidth = 300.0;
   static const buttonHeight = 200.0;
 
   @override
   void initState() {
+    super.initState();
+
     _wigglePath = WigglePath(width: buttonWidth, height: buttonHeight);
     _controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 5));
+        AnimationController(vsync: this, duration: const Duration(seconds: 5));
     _animation = CurvedAnimation(parent: _controller, curve: Curves.easeInOut);
-    _controller.forward(from: 0);
+    _controller
+      ..forward(from: 0)
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          _wigglePath.randomize();
+          _controller.forward(from: 0);
+        }
+      });
+  }
 
-    _controller.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        _wigglePath.randomize();
-        _controller.forward(from: 0);
-      }
-    });
-    super.initState();
+  @override
+  void dispose() {
+    _controller.dispose();
+
+    super.dispose();
   }
 
   @override
@@ -52,7 +63,7 @@ class _LearnMoreButtonState extends State<LearnMoreButton>
           _wigglePath.moveTo(_animation.value);
           return CustomPaint(
             painter: WigglePainter(wigglePath: _wigglePath),
-            child: Container(
+            child: SizedBox(
               width: buttonWidth,
               height: buttonHeight,
               child: Center(

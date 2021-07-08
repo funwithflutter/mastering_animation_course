@@ -4,7 +4,7 @@ import '../styles.dart';
 import '../widgets/demo_button.dart';
 
 class PhysicalModelExample extends StatefulWidget {
-  PhysicalModelExample({Key key}) : super(key: key);
+  const PhysicalModelExample({Key? key}) : super(key: key);
 
   @override
   _PhysicalModelExampleState createState() => _PhysicalModelExampleState();
@@ -65,9 +65,9 @@ class _PhysicalModelExampleState extends State<PhysicalModelExample> {
           borderRadius: BorderRadius.circular(_borderRadius),
           elevation: _elevation,
           shadowColor: _shadowColor,
-          duration: Duration(milliseconds: 600),
+          duration: const Duration(milliseconds: 600),
           curve: Curves.ease,
-          child: SizedBox(
+          child: const SizedBox(
             width: 200,
             height: 200,
             child: Center(

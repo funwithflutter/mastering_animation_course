@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class SlideTransitionExample extends StatefulWidget {
-  SlideTransitionExample({Key key, this.child}) : super(key: key);
+  const SlideTransitionExample({Key? key, this.child}) : super(key: key);
 
-  final Widget child;
+  final Widget? child;
 
   @override
   _SlideTransitionExampleState createState() => _SlideTransitionExampleState();
@@ -11,18 +11,19 @@ class SlideTransitionExample extends StatefulWidget {
 
 class _SlideTransitionExampleState extends State<SlideTransitionExample>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-  Animation<Offset> _animation;
+  late AnimationController _controller;
+  late Animation<Offset> _animation;
 
   @override
   void initState() {
+    super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 1),
+      duration: const Duration(seconds: 1),
     );
     _animation = Tween<Offset>(
-      begin: Offset(0, 1),
-      end: Offset(0, 0),
+      begin: const Offset(0, 1),
+      end: const Offset(0, 0),
     ).animate(
       CurvedAnimation(
         parent: _controller,
@@ -30,8 +31,6 @@ class _SlideTransitionExampleState extends State<SlideTransitionExample>
       ),
     );
     _controller.forward();
-
-    super.initState();
   }
 
   @override

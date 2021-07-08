@@ -8,7 +8,7 @@ const salmon = Color(0xFFff6150);
 
 final darkTheme = ThemeData.dark().copyWith(
   accentColor: salmon,
-  floatingActionButtonTheme: FloatingActionButtonThemeData(
+  floatingActionButtonTheme: const FloatingActionButtonThemeData(
     backgroundColor: mustard,
     foregroundColor: Colors.black,
   ),
@@ -16,7 +16,7 @@ final darkTheme = ThemeData.dark().copyWith(
 final lightTheme = ThemeData.light().copyWith(
   primaryColor: darkBlue,
   accentColor: mustard,
-  floatingActionButtonTheme: FloatingActionButtonThemeData(
+  floatingActionButtonTheme: const FloatingActionButtonThemeData(
     backgroundColor: salmon,
     foregroundColor: Colors.white,
   ),

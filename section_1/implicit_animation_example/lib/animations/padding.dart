@@ -5,7 +5,7 @@ import '../widgets/animate_me_please.dart';
 import '../widgets/demo_button.dart';
 
 class PaddingExample extends StatefulWidget {
-  PaddingExample({Key key}) : super(key: key);
+  const PaddingExample({Key? key}) : super(key: key);
 
   @override
   _PaddingExampleState createState() => _PaddingExampleState();
@@ -44,11 +44,11 @@ class _PaddingExampleState extends State<PaddingExample> {
           children: <Widget>[
             AnimatedPadding(
               padding: _padding,
-              duration: Duration(milliseconds: 600),
+              duration: const Duration(milliseconds: 600),
               curve: Curves.easeOut,
               child: Container(
                 color: Colors.orange,
-                child: AnimateMePlease(),
+                child: const AnimateMePlease(),
               ),
             ),
             DemoButton(

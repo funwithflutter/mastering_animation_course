@@ -3,10 +3,12 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:transition_widgets_example/styles.dart';
 
 class ScaleTransitionExample extends HookWidget {
+  const ScaleTransitionExample({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final _controller = useAnimationController(
-      duration: Duration(seconds: 1),
+      duration: const Duration(seconds: 1),
       lowerBound: 0,
       upperBound: 1,
     );
@@ -31,7 +33,7 @@ class ScaleTransitionExample extends HookWidget {
           color: sunset,
           width: 100,
           height: 100,
-          child: Center(
+          child: const Center(
             child: Text(
               'Scale',
               style: TextStyle(fontSize: 24),

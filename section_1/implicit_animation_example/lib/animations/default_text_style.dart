@@ -4,7 +4,7 @@ import '../styles.dart';
 import '../widgets/demo_button.dart';
 
 class DefaultTextStyleExample extends StatefulWidget {
-  DefaultTextStyleExample({Key key}) : super(key: key);
+  const DefaultTextStyleExample({Key? key}) : super(key: key);
 
   @override
   _DefaultTextStyleExampleState createState() =>
@@ -84,7 +84,7 @@ class _DefaultTextStyleExampleState extends State<DefaultTextStyleExample> {
         Expanded(
           child: Center(
             child: AnimatedDefaultTextStyle(
-              duration: Duration(milliseconds: 600),
+              duration: const Duration(milliseconds: 600),
               style: TextStyle(
                 fontSize: _fontSize,
                 color: _color,
@@ -94,8 +94,8 @@ class _DefaultTextStyleExampleState extends State<DefaultTextStyleExample> {
                 letterSpacing: _letterSpacing,
               ),
               curve: Curves.ease,
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
+              child: const Padding(
+                padding: EdgeInsets.all(16.0),
                 child: Text('Animate'),
               ),
             ),

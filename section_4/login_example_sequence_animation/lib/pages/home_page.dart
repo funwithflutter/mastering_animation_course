@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../styles/backgrounds.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -22,13 +22,13 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             Text(
               'Success!',
-              style: Theme.of(context).textTheme.headline4.copyWith(
+              style: Theme.of(context).textTheme.headline4!.copyWith(
                     color: Colors.white,
                   ),
             ),
             Text(
               'This is the home page',
-              style: Theme.of(context).textTheme.headline6.copyWith(
+              style: Theme.of(context).textTheme.headline6!.copyWith(
                     color: Colors.white,
                   ),
             ),

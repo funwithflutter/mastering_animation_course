@@ -1,15 +1,15 @@
 import 'package:flutter/widgets.dart';
 
-class FadeRoute extends PageRoute {
-  final Widget child;
-
+class FadeRoute extends PageRoute<dynamic> {
   FadeRoute(this.child);
 
-  @override
-  Color get barrierColor => null;
+  final Widget child;
 
   @override
-  String get barrierLabel => null;
+  Color? get barrierColor => null;
+
+  @override
+  String? get barrierLabel => null;
 
   @override
   Widget buildPage(BuildContext context, Animation<double> animation,

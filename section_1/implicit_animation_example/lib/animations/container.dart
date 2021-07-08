@@ -8,7 +8,7 @@ import '../styles.dart';
 import '../widgets/demo_button.dart';
 
 class ContainerExample extends StatefulWidget {
-  const ContainerExample({Key key}) : super(key: key);
+  const ContainerExample({Key? key}) : super(key: key);
 
   @override
   _ContainerExampleState createState() => _ContainerExampleState();
@@ -16,10 +16,10 @@ class ContainerExample extends StatefulWidget {
 
 class _ContainerExampleState extends State<ContainerExample> {
   Color _color = mustard;
-  var _size = Size(200, 200);
+  var _size = const Size(200, 200);
 
-  var _padding = EdgeInsets.all(8);
-  var _margin = EdgeInsets.all(0);
+  var _padding = const EdgeInsets.all(8);
+  var _margin = const EdgeInsets.all(0);
 
   var _borderSize = 1.0;
   var _borderRadius = 0.0;
@@ -29,7 +29,7 @@ class _ContainerExampleState extends State<ContainerExample> {
   final _random = Random();
 
   var _boxShadow = [
-    BoxShadow(
+    const BoxShadow(
       color: Colors.grey,
       offset: Offset(15.0, 10.0),
       blurRadius: 20.0,

@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class AnimatedListPage extends StatefulWidget {
-  AnimatedListPage({Key key}) : super(key: key);
+  const AnimatedListPage({Key? key}) : super(key: key);
 
   @override
   _AnimatedListPageState createState() => _AnimatedListPageState();
@@ -20,19 +20,19 @@ class AnimatedListPage extends StatefulWidget {
 
 class _AnimatedListPageState extends State<AnimatedListPage>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-  Animation<double> _menuAnimation;
+  late AnimationController _controller;
+  late Animation<double> _menuAnimation;
 
   final _listKey = GlobalKey<AnimatedListState>();
   final _scrollController = ScrollController();
 
-  PhrasesProvider _phrasesProvider;
+  late PhrasesProvider _phrasesProvider;
 
   @override
   void initState() {
+    super.initState();
     _phrasesProvider = Provider.of<PhrasesProvider>(context, listen: false);
     _initAnimation();
-    super.initState();
   }
 
   @override
@@ -56,7 +56,7 @@ class _AnimatedListPageState extends State<AnimatedListPage>
   void _initAnimation() {
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 600),
+      duration: const Duration(milliseconds: 600),
     );
 
     _menuAnimation = CurvedAnimation(
@@ -67,20 +67,20 @@ class _AnimatedListPageState extends State<AnimatedListPage>
 
   void _addRandomItemToList() {
     _phrasesProvider.addRandomItemToList();
-    _listKey.currentState.insertItem(_phrasesProvider.length - 1);
+    _listKey.currentState!.insertItem(_phrasesProvider.length - 1);
     _scrollListToBottom();
   }
 
   void _addItemToList(PhraseModel phrase, int index) {
     _phrasesProvider.addItemToList(phrase, index);
-    _listKey.currentState.insertItem(index);
+    _listKey.currentState!.insertItem(index);
   }
 
   void _removeItemFromList(int index) {
     _phrasesProvider.removeItemFromList(
       index,
     );
-    _listKey.currentState.removeItem(
+    _listKey.currentState!.removeItem(
       index,
       (_, animation) {
         return Container();
@@ -90,11 +90,11 @@ class _AnimatedListPageState extends State<AnimatedListPage>
 
   void _scrollListToBottom() {
     Timer(
-      Duration(milliseconds: 100),
+      const Duration(milliseconds: 100),
       () {
         _scrollController.animateTo(
           _scrollController.position.maxScrollExtent,
-          duration: Duration(milliseconds: 200),
+          duration: const Duration(milliseconds: 200),
           curve: Curves.ease,
         );
       },
@@ -105,7 +105,7 @@ class _AnimatedListPageState extends State<AnimatedListPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Phrase Generator'),
+        title: const Text('Phrase Generator'),
         leading: IconButton(
           onPressed: _onMenuPress,
           icon: AnimatedIcon(
@@ -113,7 +113,7 @@ class _AnimatedListPageState extends State<AnimatedListPage>
             icon: AnimatedIcons.menu_close,
           ),
         ),
-        actions: <Widget>[
+        actions: const <Widget>[
           MenuPopupButton(),
         ],
       ),
@@ -121,7 +121,7 @@ class _AnimatedListPageState extends State<AnimatedListPage>
         animation: _menuAnimation,
         child: FloatingActionButton(
           onPressed: _addRandomItemToList,
-          child: Icon(Icons.add),
+          child: const Icon(Icons.add),
         ),
       ),
       body: Stack(
@@ -152,7 +152,7 @@ class _AnimatedListPageState extends State<AnimatedListPage>
           ),
           MenuTransitionExample(
             animation: _controller.view,
-            child: LikedPhrasesWidget(),
+            child: const LikedPhrasesWidget(),
           )
         ],
       ),

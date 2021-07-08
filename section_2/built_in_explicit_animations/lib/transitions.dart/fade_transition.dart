@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class FadeTransitionExample extends StatefulWidget {
-  FadeTransitionExample({Key key}) : super(key: key);
+  const FadeTransitionExample({Key? key}) : super(key: key);
 
   @override
   _FadeTransitionExampleState createState() => _FadeTransitionExampleState();
@@ -9,18 +9,19 @@ class FadeTransitionExample extends StatefulWidget {
 
 class _FadeTransitionExampleState extends State<FadeTransitionExample>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
+  late AnimationController _controller;
 
   String _text = 'Fade In';
   String _key = 'fadein';
 
   @override
   void initState() {
-    _controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 5));
-    _controller.repeat(reverse: true);
-    _controller.addStatusListener(_animationStatusListener);
     super.initState();
+    _controller =
+        AnimationController(vsync: this, duration: const Duration(seconds: 5));
+    _controller
+      ..repeat(reverse: true)
+      ..addStatusListener(_animationStatusListener);
   }
 
   void _animationStatusListener(AnimationStatus status) {
@@ -51,15 +52,17 @@ class _FadeTransitionExampleState extends State<FadeTransitionExample>
         duration: const Duration(milliseconds: 300),
         transitionBuilder: (Widget child, Animation<double> animation) {
           return SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(1, 0),
+              end: const Offset(0.0, 0),
+            ).animate(animation),
             child: child,
-            position: Tween<Offset>(begin: Offset(1, 0), end: Offset(0.0, 0))
-                .animate(animation),
           );
         },
         child: Text(
           _text,
           key: ValueKey<String>(_key),
-          style: Theme.of(context).textTheme.headline,
+          style: Theme.of(context).textTheme.headline5,
         ),
       ),
     );

@@ -1,1 +1,5 @@
-# mastering_animation_course
+# Animation Course
+
+This main/master repository contains the latest code. Updated with the latest version of Flutter (including null safety).
+
+For historic versions, please see this [branch](https://github.com/funwithflutter/mastering_animation_course/tree/history/pre-null-safety). This branch is what is referenced in the videos for the time being.

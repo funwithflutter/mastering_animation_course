@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 
 class CallToActionButton extends StatelessWidget {
   const CallToActionButton({
-    Key key,
-    @required this.onPressed,
-    @required this.text,
-    @required this.color,
-  })  : assert(onPressed != null),
-        super(key: key);
+    Key? key,
+    required this.onPressed,
+    required this.text,
+    required this.color,
+  }) : super(key: key);
 
   final VoidCallback onPressed;
   final String text;
@@ -15,12 +14,8 @@ class CallToActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
-      onPressed: () {
-        if (onPressed != null) {
-          onPressed();
-        }
-      },
+    return TextButton(
+      onPressed: onPressed,
       child: Text(text, style: TextStyle(color: color, fontSize: 16)),
     );
   }

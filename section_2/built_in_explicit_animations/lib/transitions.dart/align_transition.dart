@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:transition_widgets_example/styles.dart';
 
 class AlignTransitionExample extends StatefulWidget {
-  AlignTransitionExample({Key key}) : super(key: key);
+  const AlignTransitionExample({Key? key}) : super(key: key);
 
   @override
   _AlignTransitionExampleState createState() => _AlignTransitionExampleState();
@@ -10,21 +10,21 @@ class AlignTransitionExample extends StatefulWidget {
 
 class _AlignTransitionExampleState extends State<AlignTransitionExample>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-  Animation<AlignmentGeometry> _animation;
+  late AnimationController _controller;
+  late Animation<AlignmentGeometry> _animation;
 
   @override
   void initState() {
+    super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 2),
+      duration: const Duration(seconds: 2),
     );
     _animation = Tween<AlignmentGeometry>(
             begin: Alignment.topLeft, end: Alignment.topRight)
         .chain(CurveTween(curve: Curves.bounceOut))
         .animate(_controller);
     _controller.repeat(reverse: true);
-    super.initState();
   }
 
   @override
@@ -38,10 +38,16 @@ class _AlignTransitionExampleState extends State<AlignTransitionExample>
     return AlignTransition(
       alignment: _animation,
       child: Container(
-          color: salmon,
-          width: 100,
-          height: 100,
-          child: Center(child: Text('Align', style: TextStyle(fontSize: 24)))),
+        color: salmon,
+        width: 100,
+        height: 100,
+        child: const Center(
+          child: Text(
+            'Align',
+            style: TextStyle(fontSize: 24),
+          ),
+        ),
+      ),
     );
   }
 }

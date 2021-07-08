@@ -4,10 +4,10 @@ import '../styles/colors.dart';
 
 class Header extends StatelessWidget {
   const Header({
-    Key key,
-    @required double scale,
-    @required double height,
-    @required bool isLogin,
+    Key? key,
+    required double scale,
+    required double height,
+    required bool isLogin,
   })  : _scale = scale,
         _height = height,
         _isLogin = isLogin,
@@ -36,7 +36,7 @@ class Header extends StatelessWidget {
             headerText,
             overflow: TextOverflow.fade,
             maxLines: 1,
-            style: Theme.of(context).textTheme.headline5.copyWith(
+            style: Theme.of(context).textTheme.headline5!.copyWith(
                   color: Colors.white,
                 ),
           ),

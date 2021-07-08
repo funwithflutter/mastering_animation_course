@@ -12,7 +12,7 @@ import '../widgets/zoom_page_view.dart';
 import 'learn_more_page.dart';
 
 class Home extends StatefulWidget {
-  Home({Key key}) : super(key: key);
+  const Home({Key? key}) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();
@@ -26,19 +26,19 @@ class _HomeState extends State<Home>
 
   final ValueNotifier<double> _valueNotifier = ValueNotifier(0.5);
 
-  PageController _pageController;
-  AnimationController _controller;
+  late PageController _pageController;
+  late AnimationController _controller;
 
   @override
   void initState() {
+    super.initState();
+
     _pageController = PageController(
         initialPage: _initialPage, viewportFraction: _viewPortFraction);
     _controller = AnimationController(
       vsync: this,
       duration: _transitionDuration,
     );
-
-    super.initState();
   }
 
   @override
@@ -53,24 +53,24 @@ class _HomeState extends State<Home>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    routeObserver.subscribe(this, ModalRoute.of(context));
+    routeObserver.subscribe(this, ModalRoute.of(context) as PageRoute);
   }
 
   @override
   void didPush() {
-    print('push');
+    debugPrint('push');
     super.didPush();
   }
 
   @override
   void didPushNext() {
-    print('push next');
+    debugPrint('push next');
     super.didPushNext();
   }
 
   @override
   void didPopNext() {
-    print('pop next');
+    debugPrint('pop next');
     if (!(_controller.value > 0)) {
       return;
     }
@@ -82,7 +82,7 @@ class _HomeState extends State<Home>
 
   @override
   void didPop() {
-    print('pop');
+    debugPrint('pop');
     super.didPop();
   }
 
@@ -91,11 +91,11 @@ class _HomeState extends State<Home>
   }
 
   void _transitionRoute() {
-    Navigator.of(context).push(_createRoute());
+    Navigator.of(context).push<dynamic>(_createRoute());
   }
 
   Route _createRoute() {
-    return PageRouteBuilder(
+    return PageRouteBuilder<dynamic>(
       transitionDuration: _transitionDuration,
       pageBuilder: (context, animation, secondaryAnimation) =>
           const LearnMorePage(),
@@ -120,20 +120,13 @@ class _HomeState extends State<Home>
           children: <Widget>[
             ValueListenableBuilder(
               valueListenable: _valueNotifier,
-              builder: (context, value, child) {
+              builder: (BuildContext context, double value, Widget? child) {
                 return BinarayBackround(value: _valueNotifier.value);
               },
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                // Padding(
-                //   padding: const EdgeInsets.all(16.0),
-                //   child: Text(
-                //     'Front-end Frameworks',
-                //     style: Theme.of(context).textTheme.display1,
-                //   ),
-                // ),
                 ZoomPageScroll(
                   pageController: _pageController,
                   value: _valueNotifier,

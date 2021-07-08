@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
 class DemoPage extends StatelessWidget {
-  const DemoPage({Key key, @required this.title, @required this.child})
-      : super(key: key);
+  const DemoPage({
+    Key? key,
+    required this.title,
+    required this.child,
+  }) : super(key: key);
 
   final String title;
   final Widget child;

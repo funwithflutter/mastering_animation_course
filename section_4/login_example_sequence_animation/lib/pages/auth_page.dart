@@ -49,7 +49,7 @@ class _AuthPageState extends State<AuthPage>
   void initState() {
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 1200),
+      duration: const Duration(milliseconds: 1200),
     )..addStatusListener(_animationStatusListener);
 
     _initSequenceAnimation();
@@ -176,7 +176,10 @@ class _AuthPageState extends State<AuthPage>
 
   Future<void> _routeTransition() {
     return Future.delayed(const Duration(milliseconds: 500), () {
-      Navigator.pushReplacement(context, FadeRoute(HomePage()));
+      Navigator.pushReplacement<dynamic, dynamic>(
+        context,
+        FadeRoute(const HomePage()),
+      );
     });
   }
 
@@ -188,8 +191,8 @@ class _AuthPageState extends State<AuthPage>
         children: <Widget>[
           ConstrainedBox(
             constraints: const BoxConstraints.expand(),
-            child: FlutterLogo(
-              colors: Colors.blueGrey,
+            child: const FlutterLogo(
+              textColor: Colors.blueGrey,
               style: FlutterLogoStyle.markOnly,
             ),
           ),
@@ -203,11 +206,12 @@ class _AuthPageState extends State<AuthPage>
                   child: BackdropFilter(
                     filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
                     child: Container(
-                      height: _sequenceAnimation['height'].value,
-                      width: _sequenceAnimation['width'].value,
+                      height: _sequenceAnimation['height'].value as double,
+                      width: _sequenceAnimation['width'].value as double,
                       decoration: BoxDecoration(
                         color: Colors.grey.shade300.withOpacity(0.1),
-                        borderRadius: _sequenceAnimation['borderRadius'].value,
+                        borderRadius: _sequenceAnimation['borderRadius'].value
+                            as BorderRadiusGeometry,
                       ),
                       child: Stack(
                         children: <Widget>[
@@ -215,8 +219,10 @@ class _AuthPageState extends State<AuthPage>
                             child: body,
                           ),
                           Header(
-                              scale: _sequenceAnimation['scale'].value,
-                              height: _sequenceAnimation['headerHight'].value,
+                              scale:
+                                  _sequenceAnimation['scale'].value as double,
+                              height: _sequenceAnimation['headerHight'].value
+                                  as double,
                               isLogin: _isLogin),
                         ],
                       ),

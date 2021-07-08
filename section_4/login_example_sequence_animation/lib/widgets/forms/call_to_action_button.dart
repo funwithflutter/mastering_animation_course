@@ -15,7 +15,7 @@ class CallToActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
+    return TextButton(
       onPressed: () {
         if (onPressed != null) {
           onPressed();

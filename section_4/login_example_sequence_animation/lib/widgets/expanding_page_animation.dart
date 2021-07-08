@@ -21,7 +21,7 @@ class ExpandingPageAnimation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: AnimatedContainer(
-        duration: Duration(milliseconds: 500),
+        duration: const Duration(milliseconds: 500),
         curve: Curves.ease,
         width: _width,
         height: _height,

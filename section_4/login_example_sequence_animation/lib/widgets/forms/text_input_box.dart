@@ -18,19 +18,19 @@ class TextInputBox extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: TextFormField(
         obscureText: obscureText,
-        style: TextStyle(color: Colors.white),
+        style: const TextStyle(color: Colors.white),
         decoration: InputDecoration(
           prefixIcon: Icon(icon, color: Colors.white54),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30),
-            borderSide: BorderSide(color: Colors.white, width: 2.0),
+            borderSide: const BorderSide(color: Colors.white, width: 2.0),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30),
-            borderSide: BorderSide(color: Colors.white54, width: 2.0),
+            borderSide: const BorderSide(color: Colors.white54, width: 2.0),
           ),
           hintText: hintText,
-          hintStyle: TextStyle(color: Colors.white70),
+          hintStyle: const TextStyle(color: Colors.white70),
         ),
       ),
     );

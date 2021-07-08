@@ -26,19 +26,19 @@ class SignUpForm extends StatelessWidget {
           padding: EdgeInsets.only(top: safeArea),
           child: Column(
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(16.0),
+              const Padding(
+                padding: EdgeInsets.all(16.0),
                 child: CallToActionText('Create an account'),
               ),
-              TextInputBox(
+              const TextInputBox(
                 icon: Icons.portrait,
                 hintText: 'Name',
               ),
-              TextInputBox(
+              const TextInputBox(
                 icon: Icons.email,
                 hintText: 'Email',
               ),
-              TextInputBox(
+              const TextInputBox(
                 icon: Icons.lock_outline,
                 hintText: 'Password',
                 obscureText: true,
@@ -50,7 +50,7 @@ class SignUpForm extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  CallToActionText('Already have an account?'),
+                  const CallToActionText('Already have an account?'),
                   CallToActionButton(
                     text: 'Sign in',
                     onPressed: onLoginPressed,

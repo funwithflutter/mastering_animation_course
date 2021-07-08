@@ -24,39 +24,37 @@ class LoginForm extends StatelessWidget {
       child: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(top: safeArea),
-          child: Container(
-            child: Column(
-              children: <Widget>[
-                Padding(
-                    padding: const EdgeInsets.only(bottom: 16.0),
-                    child: CallToActionText('Please sign in to continue')),
-                TextInputBox(
-                  icon: Icons.email,
-                  hintText: 'Email',
-                ),
-                TextInputBox(
-                  icon: Icons.lock_outline,
-                  hintText: 'Password',
-                  obscureText: true,
-                ),
-                CallToActionButton(
-                  onPressed: onLoginPressed,
-                  text: 'Login',
-                  color: headerLoginColor,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    CallToActionText("Don't have an account?"),
-                    CallToActionButton(
-                      onPressed: onSignUpPressed,
-                      text: 'Sign Up',
-                      color: headerSignUpColor,
-                    ),
-                  ],
-                ),
-              ],
-            ),
+          child: Column(
+            children: <Widget>[
+              const Padding(
+                  padding: EdgeInsets.only(bottom: 16.0),
+                  child: CallToActionText('Please sign in to continue')),
+              const TextInputBox(
+                icon: Icons.email,
+                hintText: 'Email',
+              ),
+              const TextInputBox(
+                icon: Icons.lock_outline,
+                hintText: 'Password',
+                obscureText: true,
+              ),
+              CallToActionButton(
+                onPressed: onLoginPressed,
+                text: 'Login',
+                color: headerLoginColor,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  const CallToActionText("Don't have an account?"),
+                  CallToActionButton(
+                    onPressed: onSignUpPressed,
+                    text: 'Sign Up',
+                    color: headerSignUpColor,
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),
